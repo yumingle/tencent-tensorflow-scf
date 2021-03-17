@@ -1,5 +1,8 @@
 [English](README-en.md) | [视频演示](https://www.bilibili.com/video/BV1Zh411f7uu/) | [Live demo!](https://sls-website-ap-beijing-7jlzqqj-1302315972.cos-website.ap-beijing.myqcloud.com/) | [教程](https://juejin.cn/post/6913861424015998989)
 
+Note:
+在 portal 上面如果出现 bootstrap not execute，需要在云函数控制台上面打开 Cloud Studio，右键文件名打开终端控制台，将 bootstrap 文件改为权限可执行，然后选择重新部署按钮即可。
+
 # 快速开始
 
 Clone 这个 repo。从 repo 的根目录，您可以拉取我们预先配置的 dev Docker image 并登录进去。请见[国内的 Docker hub 镜像](https://yeasy.gitbook.io/docker_practice/install/mirror)。
@@ -76,4 +79,5 @@ $ npm install -g serverless
 ```
 
 准备工作已经做完了，现在你可以参照上文提到的 Codespaces 的创建和部署教程来创建自己的云函数。
+
 
