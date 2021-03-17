@@ -22,6 +22,7 @@ fn main() {
            .run();
     let res_vec: Vec<u8> = session.get_output("MobilenetV1/Predictions/Softmax");
 
+    // 找到最大的类别
     let mut i = 0;
     let mut max_index: i32 = -1;
     let mut max_value: u8 = 0;
@@ -35,16 +36,6 @@ fn main() {
     }
     // println!("{} : {}", max_index, max_value as f32 / 255.0);
 
-    /*
-    let mut confidence = "could be";
-    if max_value > 200 {
-        confidence = "is very likely";
-    } else if max_value > 125 {
-        confidence = "is likely";
-    } else if max_value > 50 {
-        confidence = "could be";
-    }
-    */
     let mut confidence = "可能有";
     if max_value > 200 {
         confidence = "非常可能有";
@@ -54,18 +45,19 @@ fn main() {
         confidence = "可能有";
     }
 
+    // 定位到预测的类别
     let mut label_lines = labels.lines();
     for _i in 0..max_index {
       label_lines.next();
     }
 
     let class_name = label_lines.next().unwrap().to_string();
-    if max_value > 50 && max_index != 0 {
+    if max_index != 0 {
       // println!("It {} a <a href='https://www.google.com/search?q={}'>{}</a> in the picture", confidence.to_string(), class_name, class_name);
       println!("上传的图片里面{} <a href='https://www.google.com/search?q={}'>{}</a>", confidence.to_string(), class_name, class_name);
     } else {
       // println!("It does not appears to be any food item in the picture.");
-      println!("上传的图片里面没有检测到食品");
+      println!("上传的图片里面没有检测到动物");
     }
     // println!("{} : {}", label_lines.next().unwrap().to_string(), confidence.to_string());
 }

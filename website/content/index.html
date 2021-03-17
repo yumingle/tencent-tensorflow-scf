@@ -21,7 +21,7 @@
       <h1>AI 推理 Serverless 应用</h1>
 
       <div class="explanation">
-        <div>让 Serverless 云函数看看你吃了什么？</div>
+        <div>动物识别</div>
       </div>
       <div>
         <img src="./imgs/ai.png" id="img_file" />
@@ -30,12 +30,11 @@
       <div class="actions">
         <button onclick="selectFile()">选择图片文件</button>
         <input type="file" id="select_file" onchange="fileSelected()" />
-        <button class="master" onclick="identFood()">这是什么食物？</button>
+        <button class="master" onclick="identFood()">这是什么动物？</button>
       </div>
       <div class="note">
-        <p>请上传一张图片，并进行识别</p>
-        <p>如果没有照片，可以使用我们提供的 <a href="./imgs/hotdogBig.png" target="_blank">hotdog</a> 图片</p>
-      </div>
+        <p>请上传一张图片，并进行识别(可上传 jpeg, jpg, png, bmp)</p>
+        </div>
       <div class="external2">
         <a href="" target="_blank"></a>
       </div>    
@@ -83,7 +82,7 @@
         const file = document.querySelector('#select_file').files[0]
         const img = document.querySelector("#img_file");
 
-	var fileExtension = ['jpeg', 'jpg'];
+	var fileExtension = ['jpeg', 'jpg', 'png', 'bmp'];
         if (!fileExtension.includes(file.name.split('.').pop().toLowerCase())) {
           alert("图片格式不支持。我们目前只支持下列图片文件格式 : "+fileExtension.join(', '));
           return false;
