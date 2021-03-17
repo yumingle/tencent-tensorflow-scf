@@ -3,8 +3,10 @@ use ssvm_tensorflow_interface;
 use serde::Deserialize;
 
 fn main() {
-    let model_data: &[u8] = include_bytes!("lite-model_aiy_vision_classifier_food_V1_1.tflite");
-    let labels = include_str!("aiy_food_V1_labelmap.txt");
+    // let model_data: &[u8] = include_bytes!("lite-model_aiy_vision_classifier_food_V1_1.tflite");
+    // let labels = include_str!("aiy_food_V1_labelmap.txt");
+    let model_data: &[u8] = include_bytes!("mobilenet_v1_1.0_224_quant.tflite");
+    let labels = include_str!("labels_mobilenet_quant_v1_224.txt");
 
     let mut buffer = String::new();
     io::stdin().read_to_string(&mut buffer).expect("Error reading from STDIN");
