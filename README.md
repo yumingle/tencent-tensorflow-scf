@@ -26,7 +26,7 @@ cd ssvm-tensorflow-0.7.3-manylinux2014_x86_64/
 
 然后运行 ```download_dependencies_all.sh``` 下载 ssvm-tensorflow 的依赖 so 文件。
 
-##### 增加代理
+##### 加速 Binary 的下载速度
 
 如果是国内网，可以使用 fastgit 加速 github 上面 binary 的下载速度。例如可以修改成下面的样子。  
 
