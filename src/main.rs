@@ -7,22 +7,21 @@ fn main() {
     // let labels = include_str!("aiy_food_V1_labelmap.txt");
     let model_data: &[u8] = include_bytes!("mobilenet_v1_1.0_224_quant.tflite");
     let labels = include_str!("labels_mobilenet_quant_v1_224.txt");
+    
 
     let mut buffer = String::new();
     io::stdin().read_to_string(&mut buffer).expect("Error reading from STDIN");
+
     let obj: FaasInput = serde_json::from_str(&buffer).unwrap();
     // println!("{} {}", &(obj.body)[..5], obj.body.len());
     let img_buf = base64::decode_config(&(obj.body), base64::STANDARD).unwrap();
-    // println!("Image buf size is {}", img_buf.len());
 
-    let flat_img = ssvm_tensorflow_interface::load_jpg_image_to_rgb8(&img_buf, 192, 192);
-
+    let flat_img = ssvm_tensorflow_interface::load_jpg_image_to_rgb8(&img_buf, 224, 224);
     let mut session = ssvm_tensorflow_interface::Session::new(&model_data, ssvm_tensorflow_interface::ModelType::TensorFlowLite);
-    session.add_input("input", &flat_img, &[1, 192, 192, 3])
+    session.add_input("input", &flat_img, &[1, 224, 224, 3])
            .run();
-    let res_vec: Vec<u8> = session.get_output("MobilenetV1/Predictions/Softmax");
+    let res_vec: Vec<u8> = session.get_output("MobilenetV1/Predictions/Reshape_1");
 
-    // 找到最大的类别
     let mut i = 0;
     let mut max_index: i32 = -1;
     let mut max_value: u8 = 0;
@@ -34,7 +33,6 @@ fn main() {
         }
         i += 1;
     }
-    // println!("{} : {}", max_index, max_value as f32 / 255.0);
 
     let mut confidence = "可能有";
     if max_value > 200 {
@@ -57,7 +55,7 @@ fn main() {
       println!("上传的图片里面{} <a href='https://www.google.com/search?q={}'>{}</a>", confidence.to_string(), class_name, class_name);
     } else {
       // println!("It does not appears to be any food item in the picture.");
-      println!("上传的图片里面没有检测到动物");
+      println!("上传的图片里面没有检测到任何动物");
     }
     // println!("{} : {}", label_lines.next().unwrap().to_string(), confidence.to_string());
 }

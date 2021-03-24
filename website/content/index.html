@@ -21,7 +21,7 @@
       <h1>AI 推理 Serverless 应用</h1>
 
       <div class="explanation">
-        <div>动物识别</div>
+        <div>动物识别v1.2</div>
       </div>
       <div>
         <img src="./imgs/ai.png" id="img_file" />
@@ -110,6 +110,9 @@
         var reader = new FileReader();
         reader.readAsDataURL(document.querySelector('#select_file').files[0]);
         reader.onloadend = function () {
+          console.log("111111");
+          console.log(reader.result.split("base64,")[1]);
+          console.log("111111");
           $.ajax({
             url: window.env.API_URL,
             type: "post",
