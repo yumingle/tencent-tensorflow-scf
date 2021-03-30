@@ -124,7 +124,7 @@ chmod -R 777 .
 # 模型调试  
 
 这里我们更换了一个 tensorflow 提供的 mobiletnet 中的量化模型 ```mobilenet_v1_1.0_224_quant```， 
-该模型可以识别 1000 多种动物种类。我们首先在 python 中获取其 input 和 output 的 tensor 维度信息以及 layer name。
+该模型可以识别 1000 多种物体种类。我们首先在 python 中获取其 input 和 output 的 tensor 维度信息以及 layer name。
 
 ```
 python fine-tuning.py
