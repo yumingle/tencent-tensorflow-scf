@@ -55,7 +55,7 @@ fn main() {
       println!("上传的图片里面{} <a href='https://www.google.com/search?q={}'>{}</a>", confidence.to_string(), class_name, class_name);
     } else {
       // println!("It does not appears to be any food item in the picture.");
-      println!("上传的图片里面没有检测到任何动物");
+      println!("上传的图片里面没有检测到任何物体");
     }
     // println!("{} : {}", label_lines.next().unwrap().to_string(), confidence.to_string());
 }
