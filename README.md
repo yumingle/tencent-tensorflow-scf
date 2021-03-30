@@ -127,7 +127,7 @@ chmod -R 777 .
 该模型可以识别 1000 多种物体种类。我们首先在 python 中获取其 input 和 output 的 tensor 维度信息以及 layer name。
 
 ```
-python fine-tuning.py
+python model_test.py
 ```
 得到下面的信息：   
 
