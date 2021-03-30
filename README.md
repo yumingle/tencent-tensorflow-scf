@@ -16,7 +16,7 @@ RESPONSE=$(LD_LIBRARY_PATH=/opt /opt/ssvm-tensorflow "$_HANDLER" <<< "$EVENT_DAT
 
 #### 下载文件
 
-从 second-status 的 github 的 ssvm-tensorflow 的 repo 里面，下载 binary package：
+从 second-stage 的 github 的 ssvm-tensorflow 的 repo 里面，下载 binary package：
 docker exec 进入到 docker 容器中的 /app 目录下，然后解压文件  
 
 ```
@@ -54,7 +54,7 @@ vi /etc/ld.so.conf
 ```
 /app/ssvm-tensorflow-0.7.3-manylinux2014_x86_64
 ```
-然后重新执行ß装载
+然后重新执行装载
 ```
 ldconfig
 ```
